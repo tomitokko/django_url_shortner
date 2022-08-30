@@ -66,9 +66,16 @@ button {
 }
 
 section {
-  min-height: 120px;
+  min-height: 20px;
   text-align: center;
   background-color: white;
+}
+        
+h3{
+  text-align: center;
+  background-color: transparent;
+  margin: 0px;
+  color: red
 }
 
     </style>
@@ -84,6 +91,7 @@ section {
   </form>
   
   <section id="section"><h2></h2></section>
+  <section><h3></h3></section>
     
 </main>
 
@@ -100,6 +108,8 @@ section {
       },
       success: function(data){
         $('h2').html("www.surls.ga/"+data)
+        $('h3').html("Your Link is Ready")
+        $('#link').val('')
       }
     });
   });
