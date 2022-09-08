@@ -10,11 +10,14 @@ def index(request):
 def create(request):
     if request.method == 'POST':
         link = request.POST['link']
-        uid = str(uuid.uuid4())[:5]
+        # Still can process even with just word
+        if ("http://www" not in link) and ("https://www" not in link) :
+            link = "http://www." + link + ".com"
+        uid = str(uuid.uuid4())[:3] #give 3 letters for uid
         new_url = Url(link=link,uuid=uid)
         new_url.save()
         return HttpResponse(uid)
 
 def go(request, pk):
     url_details = Url.objects.get(uuid=pk)
-    return redirect('https://'+url_details.link)
+    return redirect(url_details.link) #delete Http word
